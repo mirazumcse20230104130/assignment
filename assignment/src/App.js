@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Sidebar from "./components/Sidebar";
+import Profile from "./pages/Profile";
+import MyArticles from "./pages/MyArticles";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
+  const [page, setPage] = useState("profile");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ display: "flex" }}>
+      <Sidebar setPage={setPage} page={page} />
+      <div style={{ flex: 1, marginLeft: "220px", transition: "margin-left 0.3s" }}>
+        {page === "profile" && <Profile />}
+        {page === "articles" && <MyArticles />}
+      </div>
     </div>
   );
 }
